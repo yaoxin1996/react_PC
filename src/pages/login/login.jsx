@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, message } from 'antd';
 import './login.less'
-import logo from './images/logo.png'
+import logo from '../../assets/images/logo.png'
+import { reqLogin } from '../../api';
+import memoryUtils from '../../utils/memoryUtils';
+import storageUtils from '../../utils/storageUtils'
+import { Redirect } from 'react-router-dom';
 
 /**
  * 登录的组件
@@ -10,7 +14,27 @@ import logo from './images/logo.png'
 
 export default class Login extends Component {
   render() {
+    // 如果已经登录 跳转到管理界面
+    const user = storageUtils.getUser()
+    if (user && user._id) {
+      return <Redirect to='/' />
+    }
+
+    // 获取表单输入内容
     this.onFinish = (values) => {
+      reqLogin({
+        username: values.username,
+        password: values.password
+      }).then(res => {
+        if (res.data.status === 0) {
+          message.success('登录成功')
+          memoryUtils.user = res.data.data 
+          storageUtils.saveUser(res.data.data)
+          this.props.history.replace('/')
+        } else {
+          message.error(res.data.msg)
+        }
+      })
       console.log('Received values of form: ', values);
     };
     return (
