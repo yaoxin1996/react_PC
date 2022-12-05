@@ -49,6 +49,10 @@ export default class LeftNav extends Component {
     const toggleCollapsed = () => {
       setCollapsed(!collapsed);
     };
+
+    this.goToPages = (val) => {
+      console.log(val);
+    }
     return (
       <div className='left-nav'>
         <Link to="/">
@@ -71,6 +75,7 @@ export default class LeftNav extends Component {
          defaultOpenKeys={['sub1']}
          mode="inline"
          theme="dark"
+         onClick={this.goToPages}
          inlineCollapsed={collapsed}
          items={items}
        />
