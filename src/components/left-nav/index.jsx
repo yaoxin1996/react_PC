@@ -1,5 +1,5 @@
 import React, { Component, useState  } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 import {
   AppstoreOutlined,
@@ -11,6 +11,8 @@ import {
   PieChartOutlined,
 } from '@ant-design/icons';
 import { Button, Menu } from 'antd';
+
+import Home from '../../pages/home/home'
 
 import'./index.less'
 import logo from '../../assets/images/logo.png'
@@ -27,17 +29,17 @@ function getItem(label, key, icon, children, type) {
   };
 }
 const items = [
-  getItem('首页', '1', <PieChartOutlined />),
-  getItem('商品', 'sub1', <MailOutlined />, [
-    getItem('品类管理', '2'),
-    getItem('商品管理', '3'),
+  getItem(<Link to="/home">首页</Link>, '/home', <PieChartOutlined />),
+  getItem('商品', '1', <MailOutlined />, [
+    getItem(<Link to="/category">品类管理</Link>, '2'),
+    getItem(<Link to="/product">商品管理</Link>, '3'),
   ]),
-  getItem('用户管理', '4', <ContainerOutlined />),
-  getItem('角色管理', '5', <ContainerOutlined />),
+  getItem(<Link to="/user">用户管理</Link>, '/product', <ContainerOutlined />),
+  getItem(<Link to="/role">角色管理</Link>, '5', <ContainerOutlined />),
   getItem('图形图表', 'sub2', <MailOutlined />, [
-    getItem('柱状图', '6'),
-    getItem('折线图', '7'),
-    getItem('饼图', '8'),
+    getItem(<Link to="/charts/bar">柱状图</Link>, '6'),
+    getItem(<Link to="/charts/line">折线图</Link>, '7'),
+    getItem(<Link to="/charts/pie">饼图</Link>, '8'),
   ]),
 ];
 
@@ -50,9 +52,6 @@ export default class LeftNav extends Component {
       setCollapsed(!collapsed);
     };
 
-    this.goToPages = (val) => {
-      console.log(val);
-    }
     return (
       <div className='left-nav'>
         <Link to="/">
@@ -61,24 +60,23 @@ export default class LeftNav extends Component {
             <h1>Y&_后台</h1>
           </header>
         </Link>
-         <Button
-         type="primary"
-         onClick={toggleCollapsed}
-         style={{
-           marginBottom: 16,
-         }}
-       >
-         {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-       </Button>
-       <Menu
-         defaultSelectedKeys={['1']}
-         defaultOpenKeys={['sub1']}
-         mode="inline"
-         theme="dark"
-         onClick={this.goToPages}
-         inlineCollapsed={collapsed}
-         items={items}
-       />
+         {/* <Button
+          type="primary"
+          onClick={toggleCollapsed}
+          style={{
+            marginBottom: 16,
+          }}
+        >
+          {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+        </Button> */}
+        <Menu
+          defaultSelectedKeys={['/home']}
+          defaultOpenKeys={['sub1']}
+          mode="inline"
+          theme="dark"
+          inlineCollapsed={collapsed}
+          items={items}
+        />
       </div>
     )
   }
