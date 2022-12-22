@@ -22,7 +22,8 @@ export default {
    * 删除user
    */
   removeUser () {
-    store.removeItem(USER_KEY)
+    // store.removeItem(USER_KEY)
+    store.remove(USER_KEY)
   }
 }
  

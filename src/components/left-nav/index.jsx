@@ -13,35 +13,35 @@ import {
 import { Button, Menu } from 'antd';
 
 import Home from '../../pages/home/home'
-
+import items from '../left-nav/menuConfig'
 import'./index.less'
 import logo from '../../assets/images/logo.png'
 /**
  * 左侧导航组件
  */
-function getItem(label, key, icon, children, type) {
-  return {
-    key,
-    icon,
-    children,
-    label,
-    type,
-  };
-}
-const items = [
-  getItem(<Link to="/home">首页</Link>, '/home', <PieChartOutlined />),
-  getItem('商品', '1', <MailOutlined />, [
-    getItem(<Link to="/category">品类管理</Link>, '2'),
-    getItem(<Link to="/product">商品管理</Link>, '3'),
-  ]),
-  getItem(<Link to="/user">用户管理</Link>, '/product', <ContainerOutlined />),
-  getItem(<Link to="/role">角色管理</Link>, '5', <ContainerOutlined />),
-  getItem('图形图表', 'sub2', <MailOutlined />, [
-    getItem(<Link to="/charts/bar">柱状图</Link>, '6'),
-    getItem(<Link to="/charts/line">折线图</Link>, '7'),
-    getItem(<Link to="/charts/pie">饼图</Link>, '8'),
-  ]),
-];
+// function getItem(label, key, icon, children, type) {
+//   return {
+//     key,
+//     icon,
+//     children,
+//     label,
+//     type,
+//   };
+// }
+// const items = [
+//   getItem(<Link to="/home">首页</Link>, '/home', <PieChartOutlined />),
+//   getItem('商品', '1', <MailOutlined />, [
+//     getItem(<Link to="/category">品类管理</Link>, '2'),
+//     getItem(<Link to="/product">商品管理</Link>, '3'),
+//   ]),
+//   getItem(<Link to="/user">用户管理</Link>, '/product', <ContainerOutlined />),
+//   getItem(<Link to="/role">角色管理</Link>, '5', <ContainerOutlined />),
+//   getItem('图形图表', 'sub2', <MailOutlined />, [
+//     getItem(<Link to="/charts/bar">柱状图</Link>, '6'),
+//     getItem(<Link to="/charts/line">折线图</Link>, '7'),
+//     getItem(<Link to="/charts/pie">饼图</Link>, '8'),
+//   ]),
+// ];
 
 export default class LeftNav extends Component {
   render() {
