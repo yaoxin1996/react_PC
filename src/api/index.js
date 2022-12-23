@@ -31,3 +31,18 @@ export function reqWeather (city) {
     })
   })
 }
+
+// 获取一级或某个耳机分类列表
+export function reqCategoryList (data) {
+  return ajax('/manage/category/list', data)
+}
+
+// 添加分类
+export function reqCategoryAdd (data) {
+  return ajax('/manage/category/add', data, 'POST')
+}
+
+// 更新品类名称
+export function reqCategoryUpdate (data) {
+  return ajax('/manage/category/update', data, 'POST')
+}
